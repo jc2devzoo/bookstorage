@@ -14,10 +14,11 @@ const bookShema = mongoose.Schema(
             type: Number,
             required: true,
         },
-        {
-            timestamps: true,
-        }
+    },
+    {
+        timestamps: true,
     }
+    
 );
 
 export const Book = mongoose.model('book', bookShema);

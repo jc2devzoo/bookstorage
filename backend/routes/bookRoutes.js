@@ -1,5 +1,5 @@
 import express from 'express';
-import { Book } from "./models/bookModels.js";
+import { Book } from "../models/bookModels.js";
 
 
 const router = express.Router();
@@ -44,11 +44,11 @@ router.get('/', async (req, res) => {
 
 // rota para se buscar um livro a partir do id
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const { id } = req.params;
 
-        const book = await Book.findById(id)
+        const book = await Book.findById(id, request.body)
         return response.status(200).send(book);
 
     } catch (err) {
