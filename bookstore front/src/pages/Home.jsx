@@ -7,14 +7,14 @@ import {BsInfoCircle} from 'react-icons/bs';
 import {MdOutlineAddBox, MdOutlineDelete} from 'react-icons/md';
 
 const Home = () => {
-    const [books, setBooks] = useState([{}]);
+    const [books, setBooks] = useState([]);
     const [loading, setLoading] = useState(false);
     useEffect(() => {
         setLoading(true);
         axios
-          .get('http://localhost:2900/books')
+          .get('http://localhost:3000/books')
           .then((res)=>{
-            setBooks(res.data.data);
+            setBooks(res.data);
             setLoading(false);
           })
           .catch((err)=>{
@@ -22,7 +22,6 @@ const Home = () => {
          });
     },[]);
   return (
-    
       <div className='p-4'>
         <div className='flex justify-between items-center'>
           <h1 className='text-3x1 my-8'> Books List</h1>
@@ -55,23 +54,23 @@ const Home = () => {
                   <td className='border border-slate-700 rounded-md text-center max-md:hidden'>
                     {book.author}
                   </td>
-                    <td className='border border-slate-700 rounded-md text-center max-md:hidden'>
+                  <td className='border border-slate-700 rounded-md text-center max-md:hidden'>
                       {book.publishYear}
-                    </td>
-                    <td className='border border-slate-700 rounded-md text-center '>
-                      <div className='border border-slate-700 rounded-md text-center'>
-                        <Link to={`/books/details/${book._id}`}>
-                          <BsInfoCircle className='text-2x1 text-green-800' />
-                        </Link>
-                        <Link to={`books/edit/${book._id}`}>
-                          <AiOutlineEdit className='text-2x1 text-yellow-600' />
-                        </Link>
-                        <Link to={`/books/delete/${book._id}`}>
-                          <MdOutlineDelete className="text-2x1 text-red-600"/>
-                        </Link>
-                      </div>
-                    </td>
-                  </tr>
+                  </td>
+                  <td className='border border-slate-700 rounded-md text-center '>
+                    <div className='border border-slate-700 rounded-md text-center'>
+                      <Link to={`/books/details/${book._id}`}>
+                        <BsInfoCircle className='text-2x1 text-green-800' />
+                      </Link>
+                      <Link to={`books/edit/${book._id}`}>
+                        <AiOutlineEdit className='text-2x1 text-yellow-600' />
+                      </Link>
+                      <Link to={`/books/delete/${book._id}`}>
+                        <MdOutlineDelete className="text-2x1 text-red-600"/>
+                      </Link>
+                    </div>
+                  </td>
+                </tr>
                 ))}
               </tbody>   
             </table>
